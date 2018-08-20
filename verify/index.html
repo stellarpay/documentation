@@ -77,14 +77,14 @@ $amount = '5';
 // A secret key for your merchant account on StellarPay
 $apiSecret = "5df5c4a7e88da7c3e72460d17e69d07c";
 
-// orderId is passed on checkout page from customer
-$orderId = '9XAOXASD21';
+// orderDescription is passed from merchant page
+$orderDescription = 'ORDER2991-LATTE-XL';
 
 // Create hash from merchant parameters
 $secretParameters=
 $amount.':'
 .$apiSecret.':'
-.$orderId;
+.$orderDescription;
 
 // Finalize hash
 $finalSecret = strtoupper(md5($secretParameters));
