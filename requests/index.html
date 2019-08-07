@@ -75,10 +75,10 @@
 				<div class="row">
 					<div class="col-md-7">
 						<div class="content">
-							<h2 id="introduction">Create an order</h2>
-							<p>When you create order, it must be finished in 300 seconds also there is a tolerance level for delayed payments on backend.</p>
+							<h2 id="introduction">First Option : Create an order by CLI</h2>
+							<p>When you create an order the payment must be finished in 1 hour (exactly 3600 seconds) also there is a tolerance level based checker for delayed payments on backend.</p>
 							<div class="language-sh highlighter-rouge">
-								<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl https://api.stellarpay.io/api/gateway?key=eb2c4043652f7912&amount=3&currency=native
+								<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl https://api.stellarpay.io/api/gateway?currency=native&key=eb2c4043652f7912&amount=3&description=Latte
 <span class="c"># There is a three parameter passed in GET request. Key is your merchant key(id), amount is your order amount and currency is order currency</span>
 
 <span class="nv">{
@@ -105,6 +105,14 @@
 <span class="c"># Can take merchant details from the request.</span>
 <span class="c"># To follow order details take orderId from the JSON request.</span>
 
+</code></pre></div></div>
+
+<h2 id="relative-urls">Second Option : Create and order by Checkout</h2>
+<div class="language-sh highlighter-rouge">
+	<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>Redirect your clients to https://checkout.stellarpay.io/index.html?amount=ORDER_AMOUNT&description=ORDER_DESCRIPTION&merchant=MERCHANT_KEY
+<span class="c"># You need to pass your order parameters ; ORDER_AMOUNT & DESCRIPTION and MERCHANT KEY</span>
+Example checkout screen :
+<img src="https://stellarpay.io/documentation/resources/assets/checkout.png" style="width:654px;height:819px">
 </code></pre></div></div>
 
 <h2 id="relative-urls">Track Order</h2>
