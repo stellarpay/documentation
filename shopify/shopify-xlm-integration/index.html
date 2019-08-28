@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0">
+<title>Accept XLM on your Shopify store less than 10 minute</title>
+
+	<meta name="description" content="Doks have a lot personalisation options. Here you can go through every single one available and set it properly.">
+
+
+<link rel="icon" href="/blue/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,700,700i|Noto+Sans:400,400i,700,700i|Source+Code+Pro&amp;subset=latin-ext">
+<link rel="stylesheet" href="../resources/assets/css/style.css">
+
+	</head>
+	<body class="" data-spy="scroll" data-target=".js-scrollspy">
+
+
+
+	<header class="site-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+
+						<a href="../" class="site-header__logo">StellarPay</a>
+
+						<button class="offcanvas-toggle visible-xs">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button><!-- /.offcanvas-toggle -->
+
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</header><!-- /.site-header -->
+
+
+		<div class="hero-subheader">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+						<div class="align-container" data-mh>
+							<div class="align-inner">
+
+									<h1 class="hero-subheader__title">Accept XLM on your Shopify store less than 10 minute</h1>
+
+
+									<p class="hero-subheader__desc">There is few steps you need to finish to start accept Stellar payments.</p>
+
+
+
+										<a href="../getting-started" class="btn btn--dark btn--rounded btn--w-icon btn--w-icon-left">
+											<i class="icon icon--arrow-left"></i>
+											Getting Started
+										</a>
+
+
+							</div><!-- /.align-inner -->
+						</div><!-- /.align-container -->
+					</div><!-- /.col -->
+
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</div><!-- /.hero-subheader -->
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+						<div class="content">
+							<h2 id="introduction">Create manual payment method on your Shopify store</h2>
+							<ol>
+							<li><p>In the <strong>Payment providers</strong> section, select <strong>Create custom payment method</strong>.</p></li>
+							<li>
+							<p>In <strong>Custom payment method name</strong>, enter <b>Stellar Lumens (XLM)</b>. If you're accepting any token of Stellar you can also enter name of it.</p>
+							<li><p>In <strong>Additional details</strong>, enter any information that you want shown next to the payment method in your checkout.</p></li>
+							<li><p>In <strong>Payment instructions</strong>, enter the instructions that you want your customer to follow to pay for the order. These instructions are shown on the order confirmation page after the customer completes their order.</p></li>
+							<li><p> Click <strong>Activate</strong>.</p></li>
+							</ol>
+							<h2 id="introduction">Create private app on your Shopify store</h2>
+							<img src="../resources/assets/shopify_app_list.png">
+							<hr>
+							<p><b>1)</b> Go to <b>YOURSHOPNAME.myshopify.com/admin/apps/private</b> and click to the button "Create a new private app"</p>
+
+							<img src="../resources/assets/shopify_create_app.png">
+							<hr>
+							<p><b>2)</b> Fill the fields "App name" / "Developer email" and change permission of <b>Orders, transactions and fulfillments</b> field to <b>Read and write</b>.</p>
+
+							<img src="../resources/assets/shopify_create_app.png">
+							<hr>
+							<p><b>3)</b> If you created your app succcesfully go to details of the app and create your notification URL for payment gateway. Notfication URL is for sending succesfull payment notification to your Shopify store from StellarPay.</p>
+	<div class="language-sh highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="nv"> 
+API_Key : 95dndlo4x9pxe520rbqo8cbwafqkqr7t
+Password : sk5i5pea3gj1i6zulircrbraw7c31cx3
+
+Your notification URL is : 
+
+https://API_Key:Password@YOURSHOPNAME.myshopify.com
+
+Example notification URL is :
+
+https://95dndlo4x9pxe520rbqo8cbwafqkqr7t:sk5i5pea3gj1i6zulircrbraw7c31cx3@YOURSHOPNAME.myshopify.com
+	</span> </code></pre></div></div>
+
+<h2 id="api">Create merchant API credentials on StellarPay</h2>
+<img src="../resources/assets/stellarpay_create_api.png">
+<p><b>4)</b> Login to your StellarPay account and navigate to <b>Merchants</b> page. Click to "Create New API" button to create new API credentials.
+<p><b>Merchant name: </b> is which is generally your website name</p>
+<p><b>Logo: </b> is your brand/website logo URL</p>
+<p><b>Shopify REST API: </b> is URL which is created <b>Step #3</b></p>
+<p><b>Succesfull Transaction URL: </b> is Shopify website URL</p>
+<p><b>Cancel Transaction URL: </b> is Shopify website URL</p>
+</p>
+
+<img src="../resources/assets/shopify_checkout_settings.png">
+<hr>
+<p><b>5)</b> Go to <b>Settings</b> -> <b>Checkout</b> by your Shopify admin panel and find the field <b>Additional scripts</b> to put StellarPay Checkout code.
+	<div class="language-sh highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="nv">&lt;script&gt;
+var StellarPay = {
+    api_key : 'YOUR_STELLARPAY_MERCHANT_API_KEY',
+    oid : Shopify.checkout.order_id,
+    amount : Shopify.checkout.total_price,
+    currency : 'native',
+    description : Shopify.checkout.line_items[0].title
+}
+if(Shopify.checkout.credit_card == null){
+window.location.href = 'http://checkout.stellarpay.io/shopify.html?order_id='+StellarPay.oid+'&amount='+StellarPay.amount+'&currency='+StellarPay.currency+'&merchant='+StellarPay.api_key+'&description='+StellarPay.description;
+}
+&lt;/script&gt;</span> </code></pre></div></div>
+<p>Don't forget to change <b>api_key</b> field with your <b>StellarPay merchant's API key</b> in javascript code.</p>
+
+<p style="font-size:25px">If you completed the last step; You're ready to accept XLM or any XLM based token on your Shopify store!</p>
+<p>Heres an example of your checkout page:</p>
+<center><img src="../resources/assets/stellarpay_shopify_checkout.png" width="350px"></center>
+						</div><!-- /.content -->
+					</div><!-- /.col -->
+					<div class="col-md-4 col-md-offset-1">
+						<div class="sections-list-wrapper">
+							<div class="sections-list js-sections js-affix js-scrollspy hidden-xs hidden-sm"></div><!-- /.sections-list -->
+						</div>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</div><!-- /.section -->
+
+		<div class="js-footer-area">
+
+				<nav class="page-nav">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+
+									<a href="../getting-started" class="page-nav__item page-nav__item--prev">
+										<i class="icon icon--arrow-left"></i>
+										Getting Started
+									</a><!-- /.page-nav__item -->
+
+
+									<a href="../verify" class="page-nav__item page-nav__item--next">
+										Verify Orders
+										<i class="icon icon--arrow-right"></i>
+									</a><!-- /.page-nav__item -->
+
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.container -->
+				</nav><!-- /.page-nav -->
+
+
+				<div class="micro-nav">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<a href="../" class="micro-nav__back">
+					<i class="icon icon--arrow-left"></i>
+					Back to homepage
+				</a><!-- /.micro-nav__back -->
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</div><!-- /.micro-nav -->
+
+
+
+<footer class="site-footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+
+					<a href="../" class="site-footer__logo">StellarPay</a>
+
+
+					<hr>
+					<p class="site-footer__copyright">StellarPay <br>All rights reserved.</p>
+
+			</div><!-- /.col -->
+
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</footer><!-- /.site-footer -->
+
+
+<script src="../resources/assets/js/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="../resources/assets/js/vendor/bootstrap/affix.min.js"></script>
+<script type="text/javascript" src="../resources/assets/js/vendor/bootstrap/scrollspy.min.js"></script>
+<script type="text/javascript" src="../resources/assets/js/vendor/matchHeight.min.js"></script>
+<script type="text/javascript" src="../resources/assets/js/scripts.min.js"></script>
+
+
+
+
+		</div><!-- /.js-footer-area -->
+	</body>
+</html>
