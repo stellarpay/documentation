@@ -116,23 +116,20 @@ https://95dndlo4x9pxe520rbqo8cbwafqkqr7t:sk5i5pea3gj1i6zulircrbraw7c31cx3@YOURSH
 <img src="../resources/assets/shopify_checkout_settings.png">
 <hr>
 <p><b>5)</b> Go to <b>Settings</b> -> <b>Checkout</b> by your Shopify admin panel and find the field <b>Additional scripts</b> to put StellarPay Checkout code.
-	<div class="language-sh highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="nv">&lt;script&gt;
+	<div class="language-sh highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="nv">&lt;link href="https://checkout.stellarpay.io/v2/css/app.css" rel="stylesheet">	
+&lt;script&gt;
 var StellarPay = {
-    api_key : 'YOUR_STELLARPAY_MERCHANT_API_KEY',
-    oid : Shopify.checkout.order_id,
-    amount : Shopify.checkout.total_price,
-    currency : 'native',
-    description : Shopify.checkout.line_items[0].title
+"apiKey": 'YOUR_API_KEY'
 }
-if(Shopify.checkout.credit_card == null){
-window.location.href = 'http://checkout.stellarpay.io/shopify.html?order_id='+StellarPay.oid+'&amount='+StellarPay.amount+'&currency='+StellarPay.currency+'&merchant='+StellarPay.api_key+'&description='+StellarPay.description;
-}
-&lt;/script&gt;</span> </code></pre></div></div>
-<p>Don't forget to change <b>api_key</b> field with your <b>StellarPay merchant's API key</b> in javascript code.</p>
-
+var Shopify = Shopify.checkout
+&lt;/script&gt;
+&lt;vue-widget&gt;
+&lt;script src="https://checkout.stellarpay.io/v2/js/app.js">&lt;/script&gt;</span> </code></pre></div></div>
+<p>Don't forget to change <b>apiKey</b> field with your <b>StellarPay merchant's API key</b> in javascript code.</p>
+</br>
 <p style="font-size:25px">If you completed the last step; You're ready to accept XLM or any XLM based token on your Shopify store!</p>
 <p>Heres an example of your checkout page:</p>
-<center><img src="../resources/assets/stellarpay_shopify_checkout.png" width="350px"></center>
+<center><img src="https://stellarpay.io/img/overview.png" width="350px"></center>
 						</div><!-- /.content -->
 					</div><!-- /.col -->
 					<div class="col-md-4 col-md-offset-1">
